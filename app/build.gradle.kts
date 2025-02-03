@@ -40,6 +40,9 @@ android {
     buildFeatures {
         compose = true
     }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -53,6 +56,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.navigation.runtime.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -67,7 +71,7 @@ dependencies {
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     //Navigation
-    implementation ("androidx.navigation:navigation-compose:2.8.5")
+    implementation ("androidx.navigation:navigation-compose:2.8.6")
 
     //viewmodel compose
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5")
@@ -78,8 +82,17 @@ dependencies {
 
     //coil
     implementation("io.coil-kt.coil3:coil-compose:3.0.4")
+    implementation("io.coil-kt.coil3:coil-svg:3.0.4")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.4")
 
     //couroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+
+    //ExoPlayer
+    implementation ("androidx.media3:media3-exoplayer:1.5.1")
+    implementation ("androidx.media3:media3-ui:1.2.0")
+    implementation("androidx.media3:media3-exoplayer-hls:1.5.1")
+
+    //dash
+    implementation("androidx.media3:media3-exoplayer-dash:1.5.1")
 }

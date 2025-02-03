@@ -12,6 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import com.example.applicationscreens.navigation.AppNavGraph
 import com.example.applicationscreens.screens.SplashScreen
 import com.example.applicationscreens.ui.theme.ApplicationScreensTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +25,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ApplicationScreensTheme {
-               SplashScreen()
+               AppNavGraph()
             }
         }
     }
