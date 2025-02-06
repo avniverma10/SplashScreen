@@ -26,20 +26,25 @@ import androidx.navigation.NavController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.applicationscreens.repository.SignUpRepository
+//import com.example.applicationscreens.repository.SignUpRepository
 import com.example.applicationscreens.viewmodel.SignUpState
 import com.example.applicationscreens.viewmodel.SignUpViewModel
 
-
 @Composable
-fun SignUpScreen(navController: NavController,viewModel: SignUpViewModel = hiltViewModel()) {
+fun SignUpScreen(navController: NavController, viewModel: SignUpViewModel = hiltViewModel()) {
+    var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    val isButtonEnabled = email.isNotBlank() && password.isNotBlank()
+    var country by remember { mutableStateOf("") }
+    var dob by remember { mutableStateOf("") } // Date of Birth
+    var phone by remember { mutableStateOf("") }
+    var role by remember { mutableStateOf("") } // No default value
+
+    val isButtonEnabled = name.isNotBlank() && email.isNotBlank() &&
+            password.isNotBlank() && country.isNotBlank() &&
+            dob.isNotBlank() && phone.isNotBlank() && role.isNotBlank()
 
     val signUpState = viewModel.signUpState
-
-
 
     Box(
         modifier = Modifier
@@ -66,8 +71,15 @@ fun SignUpScreen(navController: NavController,viewModel: SignUpViewModel = hiltV
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                var email by remember { mutableStateOf("") }
-                var password by remember { mutableStateOf("") }
+                OutlinedTextField(
+                    value = name,
+                    onValueChange = { name = it },
+                    label = { Text("Full Name") },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(12.dp)
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
 
                 OutlinedTextField(
                     value = email,
@@ -88,10 +100,52 @@ fun SignUpScreen(navController: NavController,viewModel: SignUpViewModel = hiltV
                     visualTransformation = PasswordVisualTransformation()
                 )
 
+                Spacer(modifier = Modifier.height(12.dp))
+
+                OutlinedTextField(
+                    value = country,
+                    onValueChange = { country = it },
+                    label = { Text("Country") },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(12.dp)
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                OutlinedTextField(
+                    value = dob,
+                    onValueChange = { dob = it },
+                    label = { Text("Date of Birth (YYYY-MM-DD)") },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(12.dp)
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                OutlinedTextField(
+                    value = phone,
+                    onValueChange = { phone = it },
+                    label = { Text("Phone Number") },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(12.dp)
+                )
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                OutlinedTextField(
+                    value = role,
+                    onValueChange = { role = it },
+                    label = { Text("Role") },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(12.dp)
+                )
+
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Button(
-                    onClick = { viewModel.signUp(email, password)  },
+                    onClick = {
+                        viewModel.signUp(name, email, password, country, dob, phone, role)
+                    },
                     enabled = isButtonEnabled,
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(24.dp),
@@ -100,23 +154,21 @@ fun SignUpScreen(navController: NavController,viewModel: SignUpViewModel = hiltV
                     Text(text = "SIGN UP")
                 }
 
-
-                // Loading Indicator
                 if (signUpState is SignUpState.Loading) {
                     CircularProgressIndicator()
                 }
 
-                // Error Message
                 if (signUpState is SignUpState.Error) {
                     Text(text = "Error: ${signUpState.message}", color = Color.Red)
                 }
 
                 LaunchedEffect(signUpState) {
                     if (signUpState is SignUpState.Success) {
-                        Log.d("SignUp", "SignUp is successful")
-                        navController.navigate("login") // Navigate to login after successful sign-up
+                        Log.d("SignUp", "SignUp successful")
+                        navController.navigate("login_screen")
                     }
                 }
+
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Row(

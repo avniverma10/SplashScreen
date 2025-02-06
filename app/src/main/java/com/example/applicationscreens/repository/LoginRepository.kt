@@ -1,13 +1,13 @@
 package com.example.applicationscreens.repository
 
 import com.example.applicationscreens.api.ApiService
-import com.example.applicationscreens.models.LoginResponse
+import com.example.applicationscreens.models.UserResponse
 import com.example.applicationscreens.models.LoginRequest
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(private val apiService: ApiService) {
 
-    suspend fun login(email: String, password: String): Result<LoginResponse> {
+    suspend fun login(email: String, password: String): Result<UserResponse> {
         return try {
             // Call the login API
             val response = apiService.login(LoginRequest(email, password))

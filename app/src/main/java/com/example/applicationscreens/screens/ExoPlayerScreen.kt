@@ -127,10 +127,10 @@ fun ChannelItem(channel: Channel, onClick: () -> Unit) {
 data class Channel(val name: String, val videoUrl: String, val logoResId: Int)
 
 val sampleChannels = listOf(
-    Channel("Republic Bharat", "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8", R.drawable.news),
-    Channel("Aaj Tak", "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8",  R.drawable.news),
-    Channel("TV9 Bharatvarsh", "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8", R.drawable.news),
-    Channel("India TV", "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8",  R.drawable.news),
+    Channel("DD News", "http://nextwave.waveiontechnologies.com:8080/hls/dd/index.m3u8", R.drawable.news),
+    Channel("ABP News", "http://nextwave.waveiontechnologies.com:8080/hls/abp/index.m3u8",  R.drawable.news),
+    Channel("Mazhavil Manorama", "http://nextwave.waveiontechnologies.com:8080/hls/mazhavil/index.m3u8", R.drawable.news),
+    Channel("NDTV", "http://nextwave.waveiontechnologies.com:8080/hls/ndtv/index.m3u8",  R.drawable.news),
     Channel("Republic Bharat", "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8", R.drawable.news),
     Channel("Aaj Tak", "https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8",  R.drawable.news),
     Channel("TV9 Bharatvarsh", "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8", R.drawable.news),

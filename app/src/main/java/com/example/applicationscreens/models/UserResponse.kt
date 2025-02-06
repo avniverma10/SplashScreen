@@ -1,6 +1,6 @@
 package com.example.applicationscreens.models
 
-data class LoginResponse(
+data class UserResponse(
     val success: Boolean,
     val message: String,
     val token: String,

@@ -52,9 +52,9 @@ fun SplashScreen(navController: NavController,viewModel: SplashViewModel = hiltV
             .background(Color.LightGray)  // Default background while loading
     ) {
         // Logo
-        if (logoUrl!= null) {
+        if (logoUrl== null) {
             AsyncImage(
-                model = logoUrl,
+                model = logoUrl?:"https://waveiontechnologies.com/wp-content/uploads/2021/01/logo-header2.png",
                 contentDescription = "Logo",
                 modifier = Modifier
                     .align(Alignment.Center)

@@ -17,7 +17,7 @@ object NetworkModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://192.168.1.7:5000/api/")
+            .baseUrl("http://nextwave.waveiontechnologies.com:5000/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

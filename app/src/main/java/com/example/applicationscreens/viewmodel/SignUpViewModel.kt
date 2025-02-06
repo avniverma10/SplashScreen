@@ -7,7 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.applicationscreens.api.ApiService
-import com.example.applicationscreens.models.LoginRequest
+import com.example.applicationscreens.models.SignUpRequest
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,11 +19,19 @@ class SignUpViewModel @Inject constructor(private val apiService: ApiService) : 
     var signUpState by mutableStateOf<SignUpState>(SignUpState.Idle)
         private set
 
-    fun signUp(email: String, password: String) {
+    fun signUp(
+        name:String,
+        email: String,
+        password: String,
+        country: String,
+        dob: String,
+        phone: String,
+        role: String
+    ) {
         viewModelScope.launch {
             signUpState = SignUpState.Loading
             try {
-                val response = apiService.signUp(LoginRequest(email, password))
+                val response = apiService.signUp(SignUpRequest(dob, country, email, name, password, phone, role))
                 Log.d("SignUp", "Response: $response")
                 if (!response.isSuccessful) {
                     Log.e("SignUp", "API Error: ${response.code()} - ${response.message()}")
